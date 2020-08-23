@@ -5,13 +5,13 @@ function getProducts(){
     $db = new $mysqli;
     // array for json response
     $response = array();
-    $response["Tips"] = array();
+    $response["consultants"] = array();
 
 
     
      
     // Mysql select query
-    $result = mysqli_query($mysqli, "SELECT * FROM herbs_tips");
+    $result = mysqli_query($mysqli, "SELECT * FROM agrifarm_consultant");
      
     if(!empty($result)){
         while($row = mysqli_fetch_array($result)){
@@ -19,14 +19,16 @@ function getProducts(){
         $tmp = array();
 
         $tmp["id"] = $row["id"];
-        $tmp["title"] = $row["title"];
-        $tmp["description"] = $row["description"];
+        $tmp["name"] = $row["name"];
+        $tmp["phone"] = $row["phone"];
+        $tmp["id_number"] = $row["id_number"];
+        $tmp["location"] = $row["location"];
         $tmp["image"] = $row["image"];
         $tmp["date"] = $row["date"];
         $response["success"] = 1;
 
         // push category to final json array
-        array_push($response["Tips"], $tmp);
+        array_push($response["consultants"], $tmp);
         }
          
         // keeping response header to json
@@ -41,7 +43,7 @@ function getProducts(){
 
     $response["success"] = 0;
 
-    $response["message"] = "No Tips found";
+    $response["message"] = "No Consultants found";
 
     // echo no users JSON
     echo json_encode($response,JSON_PRETTY_PRINT);
