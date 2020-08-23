@@ -2,7 +2,7 @@
 $dbuser="root";
 $dbpass="";
 $host="localhost";
-$db="agrifarm";
+$db="herbalmb";
 $mysqli =new mysqli($host,$dbuser, $dbpass, $db);
 
 if ($mysqli->connect_error) {
